@@ -2,7 +2,7 @@
 // elements
 const random = getRandomNum(1, 5).toFixed(0);
 const numPc = random;
-const numUser = "";
+let numUser = "";
 
 // flag che mi consente di uscire da loop while
 let validNumber = false;
@@ -16,18 +16,23 @@ console.log(numPc);
 // while per verificare che nel prompt venga messo un numero valido
 while(!validNumber){
   // chiedo all utente di immettere un numero da 1 a 5 con un prompt e ripeto l operazione se l utente inserisce un numero non valido
-  const numUser = prompt("inserire un numero da 1 a 5");
+  numUser = prompt("inserire un numero da 1 a 5");
 // controllo per vedere se il numero è valido
   if(numUser<=5 && numUser>0){
   console.log("il numero è valido");
   validNumber = true;
   }else{
-    validNumer = false;
+    validNumber = false;
     console.log(" il numero non è compreso tra 1 e 5");
   };
-  const oddOrEven = prompt("scegli pari o dispari")
+
 } 
 
+const oddOrEven = prompt("scegli pari o dispari")
+
+
+
+console.log(numUser)
 
 // funzione per capire se la somma è pari
 comparer(numPc, numUser);
@@ -40,7 +45,7 @@ if(evenNumber){
   console.log("la somma è dispari");
 }
 
-console.log(evenNumber);
+console.log(evenNumber, oddOrEven, numUser);
 
 
 
@@ -56,22 +61,38 @@ function comparer(numA, numB){
   const sum = numA + numB
 
   if(sum % 2){
-    evenNumber = true
-  }else{
+    // dispari
     evenNumber = false
+  }else{
+    // pari
+    evenNumber = true
   }
 
-  winner()
+  oddEven(evenNumber, oddOrEven)
 
+  console.log("-------" ,oddEven)
 }
 
 // se il giocatore ha messo pari e la somma è pari vince
-function winner(oddOrEven){
-  if(((oddOrEven === "pari") && (evenNumber = true)) || ((oddOrEven === "dispari") && (evenNumber = false))){
-    console.log("il giocatoe ha vinto")
-  }else{
+// function winner(somma, scelta){
+//   if(((scelta === "pari") && (somma = true)) || ((scelta === "dispari") && (somma = false))){
+//     console.log("il giocatoe ha vinto")
+//   }else{
+//     console.log("il pc ha vinto")
+//   }
+
+// }
+
+
+
+
+// // secondo tentativo
+function oddEven(inputscelta, evenNumber){
+// se la somma è pari
+  if((evenNumber && (inputscelta === "pari")) || (!evenNumber && (inputscelta === "dispari"))){
+    console.log("il giocatore ha vinto")
+  }else if((evenNumber && (inputscelta === "dispari")) || (!evenNumber && (inputscelta === "pari"))){
     console.log("il pc ha vinto")
   }
-
 }
 
